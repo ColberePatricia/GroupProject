@@ -1,0 +1,7 @@
+﻿  FirstPage.cpp
+d:\cranfield work\groupproject\vs_gui\vs_gui\firstpage.cpp(7): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
+  SecondPage.cpp
+  Generating Code...
+  .NETFramework,Version=v4.6.1.AssemblyAttributes.cpp
+  FirstPage.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  VS_GUI.vcxproj -> D:\Cranfield work\GroupProject\VS_GUI\Debug\VS_GUI.exe
