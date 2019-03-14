@@ -1,0 +1,25 @@
+A basic outline of how to get OpenCV working with the CUDA module on a Windows-based machine.  For a detailed explanation, watch the video above.
+
+Make sure CUDA Toolkit 9 or 10 is installed on your machine.  I’m referring to the version that integrates with Visual Studio, NOT the Python version.  Visit cudaeducation.com/howtoprogramcuda to get a detailed overview of the process, or visit cudaeducation.com/cudatoolkit10 to learn about my challenges upgrading to CUDA Toolkit 10 from CUDA Toolkit 9.
+Download OpenCV by visiting github.com/opencv/opencv  |  Also download the extra modules by visiting github.com/opencv/opencv_contrib
+Download and install CMake at cmake.org/download
+Extract ZIP files of opencv and opencv_contrib
+Move all the modules that start with “cud” into the modules folder of the source code | Also move the following modules over: xfeatures2d, videostab, hfs, superres | Do not copy all the modules from the contrib folder over to the source folder. It will create errors and problems when building in Visual Studio
+Open CMake -> Make the source code folder where you downloaded OpenCV -> Create a new folder to place the binaries that are built.
+In CMake, check the WITH_CUDA box and press “Configure”.  Make sure to choose the correct version of Visual Studio!
+When configuring make sure that you have the following items checked off: WITH_CUDA | CUDA_ARCH_BIN [select the compute capability of your graphics card] | CUDA_STUBS | BUILD_opencv_cuda… | CUDA_FAST_MATH
+Make sure that BUILD_opencv_saliency is not checked.  It fails in Windows 10.
+Make sure that BUILD_opencv_world is not check off.
+Press “Configure” one more time to make sure all options are selected and processed.
+Press “Generate” to create toe Solutions file for Visual Studio
+Go to your build folder and open OpenCV.sln
+In Visual Studio:
+Right-click on ALL_BUILD and build for Debug x64
+Right-click on ALL_BUILD and build for Release x64
+Right-click on INSTALL and build for Debug x64
+Right-click on INSTALL and build for Release x64
+ERRORS:
+If during the build, you get “dynamic __constant__ variable error”, just double-click the error to open the file and delete the __constant__ declaration.  Also delete the __constant__ declaration for the line after the error.
+If you get “cannot open file” errors, just stop the build and try again, or restart your computer.
+Add bin folder directory to System Environment Variable in Path.  My directory is c:\install\x64\vc15\bin
+Once you have successfully built everything, open a new Visual Studio C++ Console Application Project (.cpp file).  Try to run code that has cv::cuda functionality in it.
